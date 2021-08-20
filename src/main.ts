@@ -1,8 +1,7 @@
 import { createApp } from 'vue';
 import router from './router/index';
+import App from './App.vue';
 import 'virtual:windi.css';
 import 'virtual:windi-devtools';
-
-import App from './App.vue';
 
 createApp(App).use(router).mount('#app');

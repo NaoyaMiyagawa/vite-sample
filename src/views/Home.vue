@@ -7,9 +7,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <nav>
-    <router-link to="/">Home</router-link>
-  </nav>
-
-  <div>hoge</div>
+  <div>Dashboard</div>
 </template>

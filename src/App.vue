@@ -1,15 +1,19 @@
-<template>
-  <router-view />
-</template>
-
 <script lang="ts">
 import { defineComponent } from 'vue';
+import NavBar from '@/components/NavBar.vue';
 
 export default defineComponent({
   name: 'App',
-  components: {},
+  components: {
+    NavBar,
+  },
 });
 </script>
+
+<template>
+  <NavBar />
+  <router-view />
+</template>
 
 <style>
 #app {
@@ -18,6 +22,5 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
