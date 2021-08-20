@@ -2,7 +2,6 @@ import { ref } from 'vue';
 
 export function useApi(getResults: any) {
   const query = ref<string>('');
-  const options = ref<object>({});
   const result = ref<object | null>(null);
   const error = ref<boolean>(false);
   const loading = ref<boolean>(false);
@@ -12,7 +11,7 @@ export function useApi(getResults: any) {
     loading.value = true;
 
     try {
-      result.value = await getResults({ query: query.value, options: options.value });
+      result.value = await getResults(query.value);
     } catch {
       error.value = true;
     } finally {

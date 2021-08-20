@@ -3,6 +3,7 @@
     <div class="max-w-screen-sm space-x-20">
       <router-link to="/">Home</router-link>
       <router-link to="/population">Population</router-link>
+      <router-link to="/cat">Cat</router-link>
     </div>
   </nav>
 </template>
