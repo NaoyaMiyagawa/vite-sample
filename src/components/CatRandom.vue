@@ -2,9 +2,13 @@
 import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useApi } from '../composables/useApi';
 import { loadNextImage } from '../services/catService';
+import LoadingSpinner from './LoadingSpinner.vue';
 
 export default defineComponent({
-  name: 'Cat',
+  name: 'CatRandom',
+  components: {
+    LoadingSpinner,
+  },
   setup() {
     //--------------------------------------------------
     // get and set new image
@@ -59,14 +63,29 @@ export default defineComponent({
     </button>
   </div>
 
-  <template v-if="loading">
-    <p class="p-8">Looking for the best cat for you...</p>
-  </template>
-  <template v-else-if="!error">
-    <div class="flex justify-center">
-      <img :src="imageUrl" alt="randome cat" class="w-130" />
-    </div>
-  </template>
+  <transition name="fade" mode="out-in">
+    <template v-if="loading">
+      <div>
+        <p class="p-8">Looking for the best cat for you...</p>
+        <LoadingSpinner />
+      </div>
+    </template>
+    <template v-else-if="!error">
+      <div class="flex justify-center">
+        <img :src="imageUrl" alt="randome cat" class="w-130" />
+      </div>
+    </template>
+  </transition>
 </template>
 
-<style></style>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
