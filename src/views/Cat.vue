@@ -1,19 +1,21 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import CatRandom from '../components/CatRandom.vue';
+import CatGallery from '../components/CatGallery.vue';
 
 export default defineComponent({
   name: 'Cat',
   components: {
     CatRandom,
+    CatGallery,
   },
   setup() {
-    type PageType = 'random' | 'search' | null;
+    type PageType = 'random' | 'gallery' | null;
     const pages: { value: PageType; name: string; text: string }[] = [
       { value: 'random', name: 'cat-random', text: 'Random' },
-      { value: 'search', name: 'cat-search', text: 'Search' },
+      { value: 'gallery', name: 'cat-search', text: 'Search' },
     ];
-    const selected = ref<PageType>('random');
+    const selected = ref<PageType>('gallery');
 
     return { selected, pages };
   },
@@ -33,6 +35,9 @@ export default defineComponent({
   <div>
     <template v-if="selected === 'random'">
       <CatRandom />
+    </template>
+    <template v-if="selected === 'gallery'">
+      <CatGallery />
     </template>
   </div>
 </template>

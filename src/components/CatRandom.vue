@@ -50,7 +50,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="font-bolds p-6">🐱 Hello, Cat Page 🐱</div>
+  <div class="font-bold p-6">🐱 Hello, Cat Page 🐱</div>
   <div class="flex mb-6 gap-8 justify-center">
     <button class="rounded-full bg-blue-300 shadow-lg py-2 px-10 shadow-dark-900" @click="callApi">Change Cat</button>
 
@@ -72,7 +72,7 @@ export default defineComponent({
     </template>
     <template v-else-if="!error">
       <div class="flex justify-center">
-        <img :src="imageUrl" alt="randome cat" class="w-130" />
+        <img :src="imageUrl" alt="random cat" class="w-130" />
       </div>
     </template>
   </transition>
