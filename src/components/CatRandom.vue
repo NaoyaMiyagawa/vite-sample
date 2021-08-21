@@ -6,26 +6,53 @@ import { loadNextImage } from '../services/catService';
 export default defineComponent({
   name: 'Cat',
   setup() {
+    //--------------------------------------------------
+    // get and set new image
+
     const { result, error, loading, callApi } = useApi(loadNextImage);
     onMounted(() => callApi());
-
     const imageUrl = ref<string>('');
-
     watch(result, () => {
       if (result.value && 'url' in result.value) {
         imageUrl.value = result.value.url;
       }
     });
 
-    return { imageUrl, error, loading, callApi };
+    //--------------------------------------------------
+    // auto-changing image
+
+    const isAutoChangeEnable = ref(false);
+    const toggleIsAutoChangeEnable = () => {
+      isAutoChangeEnable.value = !isAutoChangeEnable.value;
+    };
+    let intervalId: number | null = null;
+    watch(isAutoChangeEnable, (newVal) => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+      if (newVal) {
+        intervalId = setInterval(callApi, 8000);
+      }
+    });
+
+    return { imageUrl, error, loading, callApi, isAutoChangeEnable, toggleIsAutoChangeEnable };
   },
 });
 </script>
 
 <template>
-  <div class="mb-4 font-bolds">🐱 Hello, Cat Page 🐱</div>
-  <div class="mb-4">
-    <button class="bg-blue-300 px-4 py-2 shadow-lg shadow-dark-800 rounded-full" @click="callApi">Change Cat</button>
+  <div class="font-bolds p-6">🐱 Hello, Cat Page 🐱</div>
+  <div class="flex mb-6 gap-8 justify-center">
+    <button class="rounded-full bg-blue-300 shadow-lg py-2 px-10 shadow-dark-900" @click="callApi">Change Cat</button>
+
+    <button
+      class="rounded-full shadow-lg px-4 shadow-dark-800 focus:border-none"
+      :class="[isAutoChangeEnable ? 'bg-green-100' : 'bg-light-600']"
+      @click="toggleIsAutoChangeEnable"
+    >
+      {{ isAutoChangeEnable ? 'Turn off Auto-Change' : 'Turn on Auto-Change' }}
+    </button>
   </div>
 
   <template v-if="loading">
