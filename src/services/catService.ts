@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_KEY = import.meta.env.VITE_CAT_API_KEY;
 
 const apiClient = axios.create({
-  baseURL: 'https://api.thecatapi.com/v1/images/search',
+  baseURL: 'https://api.thecatapi.com/v1/',
   withCredentials: false,
   headers: {
     Accept: 'application/json',
@@ -13,19 +13,28 @@ const apiClient = axios.create({
     },
   },
 });
-console.log('🚀 > apiClient', apiClient);
 
-export default {
-  async loadNextImage() {
-    try {
-      const res = await apiClient.get('', {
-        params: { limit: 1 },
-      });
-      console.log('🚀 > loadNextImage > res', res);
-
-      return res.data[0];
-    } catch (err) {
-      console.log(err);
-    }
-  },
+type Breed = {
+  id: string;
+  name: string;
+  temperant: string;
+  life_span: string;
+  alt_names: string;
+  wikipedia_url: string;
+  origin: string;
+  weight_imperial: string;
 };
+
+const loadNextImage = async function () {
+  try {
+    const res = await apiClient.get('images/search', {
+      params: { limit: 1, size: 'med' },
+    });
+
+    return res.data[0];
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { Breed, loadNextImage };
