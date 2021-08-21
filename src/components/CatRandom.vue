@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue';
+import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useApi } from '../composables/useApi';
 import { loadNextImage } from '../services/catService';
 
@@ -26,14 +26,18 @@ export default defineComponent({
       isAutoChangeEnable.value = !isAutoChangeEnable.value;
     };
     let intervalId: number | null = null;
+    const clearAutoChange = () => {
+      if (!intervalId) return;
+      clearInterval(intervalId);
+      intervalId = null;
+    };
     watch(isAutoChangeEnable, (newVal) => {
-      if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = null;
-      }
-      if (newVal) {
-        intervalId = setInterval(callApi, 8000);
-      }
+      clearAutoChange();
+      if (!newVal) return;
+      intervalId = setInterval(callApi, 8000);
+    });
+    onUnmounted(() => {
+      clearAutoChange();
     });
 
     return { imageUrl, error, loading, callApi, isAutoChangeEnable, toggleIsAutoChangeEnable };
