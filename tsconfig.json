@@ -11,7 +11,13 @@
     "lib": [
       "esnext",
       "dom"
-    ]
+    ],
+    "types": [
+      "webpack-env",
+      "vite/client",
+      "jest",
+      "@types/jest",
+    ],
   },
   "include": [
     "src/**/*.ts",
