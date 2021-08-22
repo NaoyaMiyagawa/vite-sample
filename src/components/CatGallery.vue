@@ -86,6 +86,7 @@ export default defineComponent({
       imageResult,
       imageLoading,
       imageError,
+      imageCallApi,
     };
   },
 });
@@ -94,12 +95,17 @@ export default defineComponent({
 <template>
   <div class="font-bold p-6">🐱 Hello, Cat Gallery 🐱</div>
 
-  <div class="flex mb-6 gap-10 justify-center">
-    <div class="flex-inline text-left w-100 gap-4 justify-start">
+  <div class="flex mb-10 gap-x-10 items-end justify-center">
+    <div class="flex-inline">
+      <button @click="imageCallApi" class="rounded-full bg-cyan-200 shadow py-2 px-8">Reflesh</button>
+    </div>
+
+    <div class="flex-inline text-left w-100 justify-start">
       <label for=""> Breed </label>
       <Multiselect
         v-model="selectedBreed"
         placeholder="Select Breed"
+        class="shadow"
         :searchable="true"
         :classes="{ search: 'multiselect-search h-full focus:outline-transparent' }"
         :options="breedOptions"
@@ -107,12 +113,13 @@ export default defineComponent({
       />
     </div>
 
-    <div class="flex-inline text-left mb-10 w-100 gap-4 justify-start">
+    <div class="flex-inline text-left w-100 justify-start">
       <label for=""> Category </label>
       <Multiselect
         v-model="selectedCategories"
         mode="tags"
         placeholder="Select Categories"
+        class="shadow"
         :searchable="true"
         :classes="{ tagsSearch: 'multiselect-tags-search h-full focus:outline-transparent' }"
         :options="categoryOptions"
