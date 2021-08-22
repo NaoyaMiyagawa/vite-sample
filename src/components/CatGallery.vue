@@ -3,11 +3,13 @@ import { computed, defineComponent, onMounted, ref, watch } from 'vue';
 import { useApi } from '../composables/useApi';
 import { getBreedList, getCategoryList, getImageList } from '../services/catService';
 import Multiselect from '@vueform/multiselect';
+import LoadingSpinner from './LoadingSpinner.vue';
 
 export default defineComponent({
   name: 'CatGallery',
   components: {
     Multiselect,
+    LoadingSpinner,
   },
   setup() {
     type SelectOption = { label: string; value: number };
@@ -82,6 +84,8 @@ export default defineComponent({
       categoryLoading,
       // Image
       imageResult,
+      imageLoading,
+      imageError,
     };
   },
 });
@@ -117,15 +121,41 @@ export default defineComponent({
     </div>
   </div>
 
-  <div class="flex flex-wrap gap-10 justify-center">
-    <template v-for="data in imageResult" :key="data.id">
+  <transition>
+    <template v-if="imageLoading">
       <div>
-        <img :src="data.url" alt="" class="h-auto shadow-lg shadow-dark-400 w-300px" />
+        <p class="p-8">Preparing cats for you...</p>
+        <LoadingSpinner />
       </div>
     </template>
-  </div>
+    <template v-else-if="imageError">
+      <p>Opps, something wrong.</p>
+    </template>
+    <template v-else-if="imageResult && imageResult.length">
+      <div class="flex flex-wrap gap-10 justify-center">
+        <template v-for="data in imageResult" :key="data.id">
+          <div>
+            <img :src="data.url" alt="" class="h-auto shadow-lg shadow-dark-400 w-300px" />
+          </div>
+        </template>
+      </div>
+    </template>
+    <template v-else> No matched 😿 </template>
+  </transition>
 </template>
 
 <style lang="scss">
 @import '@vueform/multiselect/themes/default.css';
+</style>
+
+<style lang="scss" scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>
