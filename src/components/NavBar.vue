@@ -15,18 +15,18 @@ export default defineComponent({
       return route.path === path;
     };
 
-    return { route, routes, isCurrent };
+    return { routes, isCurrent };
   },
 });
 </script>
 
 <template>
-  <nav class="p-3 mb-5 bg-blue-400 text-teal-50 flex justify-center">
+  <nav class="flex bg-blue-400 mb-5 p-3 text-teal-50 justify-center">
     <div class="max-w-screen-sm">
       <template v-for="route in routes">
         <router-link
           :to="route.to"
-          class="px-10 py-3 hover:(text-blue-700 bg-light-blue-400)"
+          class="py-3 px-10 hover:(text-blue-700 bg-light-blue-400) "
           :class="{ 'text-light-blue-300 font-bold': isCurrent(route.to) }"
         >
           {{ route.name }}

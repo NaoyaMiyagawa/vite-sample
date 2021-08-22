@@ -1,15 +1,15 @@
 import { mount } from '@vue/test-utils';
+
 import LoadingSnipper from '@/components/LoadingSpinner.vue';
+const wrapper = mount(LoadingSnipper);
 
 describe('LoadingSnipper.vue', () => {
-  const wrapper = mount(LoadingSnipper);
-
   it('visible (default)', () => {
-    expect(wrapper.html().includes('Loading...')).toBe(true);
+    expect(wrapper.html()).toContain('Loading...');
   });
 
   it('invisible when passing props `isVisible` false', async () => {
     await wrapper.setProps({ isVisible: false });
-    expect(wrapper.html().includes('Loading...')).toBe(false);
+    expect(wrapper.html()).not.toContain('Loading...');
   });
 });

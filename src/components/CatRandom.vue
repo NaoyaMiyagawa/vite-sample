@@ -2,6 +2,7 @@
 import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useApi } from '../composables/useApi';
 import { loadNextImage } from '../services/catService';
+
 import LoadingSpinner from './LoadingSpinner.vue';
 
 export default defineComponent({
