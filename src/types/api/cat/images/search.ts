@@ -1,6 +1,32 @@
-export type Images = Image[];
-export type Breeds = Breed[];
+export interface Methods {
+  get: {
+    query?: Query;
 
+    resBody: Images;
+  };
+}
+
+//--------------------------------------------------
+// Request
+
+export type Query = {
+  size?: 'thumb' | 'small' | 'med' | 'full';
+  mime_types?: string;
+  order?: 'RANDOM' | 'ASC' | 'DESC';
+  limit?: number;
+  page?: number;
+  category_ids?: string;
+  breed_id?: string;
+  breed_ids?: string;
+  format?: 'json' | 'src';
+  has_breeds?: boolean;
+  include_categories?: boolean;
+};
+
+//--------------------------------------------------
+// Response
+
+export type Images = Image[];
 export interface Image {
   breeds: Breeds;
   height: number;
@@ -9,6 +35,7 @@ export interface Image {
   width: number;
 }
 
+export type Breeds = Breed[];
 export interface Breed {
   adaptability: number;
   affection_level: number;
@@ -56,23 +83,3 @@ export interface Weight {
   imperial: string;
   metric: string;
 }
-
-export type Methods = {
-  get: {
-    query?: {
-      size?: 'thumb' | 'small' | 'med' | 'full';
-      mime_types?: string;
-      order?: 'RANDOM' | 'ASC' | 'DESC';
-      limit?: number;
-      page?: number;
-      category_ids?: number[];
-      breed_id?: string;
-      format?: 'json' | 'src';
-      breed_ids?: number[];
-      has_breeds?: boolean;
-      include_categories?: boolean;
-    };
-
-    resBody: Images;
-  };
-};

@@ -1,3 +1,9 @@
+export type Query = {
+  attach_breed?: number;
+  page?: number;
+  limit?: number;
+};
+
 export type Breeds = Breed[];
 
 export interface Breed {
@@ -57,11 +63,7 @@ export interface Weight {
 
 export type Methods = {
   get: {
-    query?: {
-      attach_breed?: number;
-      page?: number;
-      limit?: number;
-    };
+    query?: Query;
 
     resBody: Breeds[];
   };
