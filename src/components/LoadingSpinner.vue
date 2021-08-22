@@ -1,13 +1,16 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'LoadingSpinner',
+<script lang="ts" setup>
+const props = defineProps({
+  isVisible: {
+    type: Boolean,
+    default: true,
+  },
 });
 </script>
 
 <template>
-  <div class="loader">Loading...</div>
+  <template v-if="isVisible">
+    <div class="loader">Loading...</div>
+  </template>
 </template>
 
 <style scoped>

@@ -50,12 +50,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="font-bold p-6">🐱 Hello, Cat Page 🐱</div>
-  <div class="flex mb-6 gap-8 justify-center">
-    <button class="rounded-full bg-blue-300 shadow-lg py-2 px-10 shadow-dark-900" @click="callApi">Change Cat</button>
+  <div class="p-6 font-bold">🐱 Hello, Cat Page 🐱</div>
+  <div class="flex justify-center gap-8 mb-6">
+    <button class="px-10 py-2 bg-blue-300 rounded-full shadow-lg shadow-dark-900" @click="callApi">Change Cat</button>
 
     <button
-      class="rounded-full shadow-lg px-4 shadow-dark-800 focus:border-none"
+      class="px-4 rounded-full shadow-lg shadow-dark-800 focus:border-none"
       :class="[isAutoChangeEnable ? 'bg-green-100' : 'bg-light-600']"
       @click="toggleIsAutoChangeEnable"
     >
