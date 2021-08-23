@@ -2,7 +2,7 @@ import { ref } from 'vue';
 
 export function useApi(getResults: any) {
   const query = ref<object>({});
-  const result = ref<anyl>(null);
+  const result = ref(null);
   const error = ref<boolean>(false);
   const loading = ref<boolean>(false);
 

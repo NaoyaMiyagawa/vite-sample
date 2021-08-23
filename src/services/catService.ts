@@ -1,7 +1,7 @@
 import axios from 'axios';
 import aspida from '@aspida/axios';
 import api from '../types/api/cat/$api';
-import { Query as ImagesSearchQuery } from '../types/api/cat/images/search';
+import { Query as ImagesSearchQuery, Image } from '../types/api/cat/images/search';
 import { Query as CategoriesQuery } from '../types/api/cat/categories';
 import { Query as BreedsQuery } from '../types/api/cat/breeds/index';
 
@@ -20,7 +20,7 @@ const axiosConfig = {
 };
 const apiClient = api(aspida(axios, axiosConfig));
 
-export async function loadNextImage() {
+export async function loadNextImage(): Promise<Image | undefined> {
   try {
     const res = await apiClient.images.search.get({ query: { limit: 1, size: 'med' } });
 
@@ -30,7 +30,7 @@ export async function loadNextImage() {
   }
 }
 
-export async function getImageList(query: ImagesQuery) {
+export async function getImageList(query: ImagesSearchQuery) {
   try {
     const res = await apiClient.images.search.get({ query });
 

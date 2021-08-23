@@ -2,6 +2,7 @@
 import { computed, defineComponent, onMounted, ref, watch } from 'vue';
 import { useApi } from '../composables/useApi';
 import { getBreedList, getCategoryList, getImageList } from '../services/catService';
+
 import Multiselect from '@vueform/multiselect';
 import LoadingSpinner from './LoadingSpinner.vue';
 

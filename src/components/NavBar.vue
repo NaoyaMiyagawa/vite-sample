@@ -1,23 +1,20 @@
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 
-export default defineComponent({
-  setup() {
-    const route = useRoute();
-    type Route = { to: string; name: string };
-    const routes = ref<Route[]>([
-      { to: '/', name: 'Home' },
-      { to: '/population', name: 'Population' },
-      { to: '/cat', name: 'Cat' },
-    ]);
-    const isCurrent = (path: string) => {
-      return route.path === path;
-    };
+const route = useRoute();
 
-    return { routes, isCurrent };
-  },
-});
+type Route = { to: string; name: string };
+
+const routes = ref<Route[]>([
+  { to: '/', name: 'Home' },
+  { to: '/population', name: 'Population' },
+  { to: '/cat', name: 'Cat' },
+]);
+
+const isCurrent = (to: string): boolean => {
+  return route.path === to;
+};
 </script>
 
 <template>

@@ -15,7 +15,7 @@ export default defineComponent({
       { value: 'random', name: 'cat-random', text: 'Random' },
       { value: 'gallery', name: 'cat-search', text: 'Search' },
     ];
-    const selected = ref<PageType>('gallery');
+    const selected = ref<PageType>('random');
 
     return { selected, pages };
   },
