@@ -1,9 +1,10 @@
 import { mount } from '@vue/test-utils';
 
-import LoadingSnipper from '@/components/LoadingSpinner.vue';
-const wrapper = mount(LoadingSnipper);
+import LoadingSpinner from '@/components/LoadingSpinner.vue';
 
-describe('LoadingSnipper.vue', () => {
+const wrapper = mount(LoadingSpinner);
+
+describe('LoadingSpinner.vue', () => {
   it('visible (default)', () => {
     expect(wrapper.html()).toContain('Loading...');
   });
