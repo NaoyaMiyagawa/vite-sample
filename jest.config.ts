@@ -1,6 +1,7 @@
 import type { Config } from '@jest/types';
 
 module.exports = {
+  roots: ['<rootDir>'],
   testMatch: [
     //
     '**/__tests__/**/*.+(ts|tsx|js)',
@@ -10,7 +11,10 @@ module.exports = {
     '^.+\\.(ts|tsx)$': 'ts-jest',
     '^.+\\.vue$': 'vue-jest',
   },
-  moduleFileExtensions: ['js', 'ts', 'json', 'vue'],
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
+  moduleFileExtensions: ['js', 'ts', 'json', 'vue'],
+  moduleNameMapper: {
+    '^@/(.+)$': '<rootDir>/src/$1',
+  },
 } as Config.InitialOptions;

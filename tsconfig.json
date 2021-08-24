@@ -16,10 +16,11 @@
       "vite/client",
       "@types/jest",
     ],
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "src/*",
-      ],
+      ]
     }
   },
   "include": [
@@ -27,6 +28,6 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "tests/**/*.spec.ts",
+    "tests/**/*.spec.ts"
   ]
 }
