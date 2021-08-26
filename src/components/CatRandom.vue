@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, watchEffect } from 'vue';
-import { useApi } from '../composables/useApi';
-import { loadNextImage } from '../services/catService';
+import { useApi } from '@/composables/useApi';
+import { loadNextImage } from '@/services/catService';
 
-import LoadingSpinner from './LoadingSpinner.vue';
+import LoadingSpinner from '@/components/LoadingSpinner.vue';
 
 //--------------------------------------------------
 // get and set new image

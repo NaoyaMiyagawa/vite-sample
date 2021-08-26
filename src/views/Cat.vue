@@ -1,25 +1,16 @@
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-import CatRandom from '../components/CatRandom.vue';
-import CatGallery from '../components/CatGallery.vue';
+<script setup lang="ts">
+import { ref } from 'vue';
+import CatRandom from '@/components/CatRandom.vue';
+import CatGallery from '@/components/CatGallery.vue';
 
-export default defineComponent({
-  name: 'Cat',
-  components: {
-    CatRandom,
-    CatGallery,
-  },
-  setup() {
-    type PageType = 'random' | 'gallery' | null;
-    const pages: { value: PageType; name: string; text: string }[] = [
-      { value: 'random', name: 'cat-random', text: 'Random' },
-      { value: 'gallery', name: 'cat-search', text: 'Search' },
-    ];
-    const selected = ref<PageType>('random');
+type PageType = 'random' | 'gallery' | null;
+type Page = { value: PageType; name: string; text: string };
 
-    return { selected, pages };
-  },
-});
+const pages: Page[] = [
+  { value: 'random', name: 'cat-random', text: 'Random' },
+  { value: 'gallery', name: 'cat-gallery', text: 'Gallery' },
+];
+const selected = ref<PageType>('random');
 </script>
 
 <template>
