@@ -1,5 +1,5 @@
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
+  verbose: true,
   preset: 'ts-jest',
   roots: ['<rootDir>'],
   testEnvironment: 'jsdom',
@@ -15,5 +15,11 @@ module.exports = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
     '^.+\\.vue$': 'vue-jest',
+  },
+  // jest.config.js
+  globals: {
+    'vue-jest': {
+      babelConfig: true,
+    },
   },
 };
